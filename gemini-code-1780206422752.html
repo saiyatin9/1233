@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chittineni Sai Yatin - One Pager Pitch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Loading premium typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Configuring custom styles and scalable container sizing -->
+    <style>
+        /* CSS reset and body styling for a neutral viewing background */
+        body {
+            background-color: #e5e5e5;
+            margin: 0;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 
+         * The A4 Canvas acts as an isolated container context. 
+         * All internal elements use `cqw` (Container Query Width) units 
+         * so the page scales perfectly like a printed PDF, regardless of screen size. 
+         */
+        .a4-canvas {
+            container-type: inline-size;
+            width: 100%;
+            max-width: 950px; /* Limits max size on large monitors */
+            aspect-ratio: 1 / 1.4142; /* Precise A4 paper proportion */
+            position: relative;
+            overflow: hidden;
+            background-color: #0F0F0F;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 
+         * The blended background: 
+         * Left is Charcoal Black (#0F0F0F), Right is Warm Ivory (#F5F0E0).
+         * The transition is intentionally soft/smeared to represent bleeding/intersection.
+         */
+        .canvas-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg, 
+                #0F0F0F 0%, 
+                #0F0F0F 28%, 
+                #1a1916 32%, 
+                #d8d3c3 35%, 
+                #F5F0E0 38%, 
+                #F5F0E0 100%
+            );
+            z-index: 1;
+        }
+
+        /* Mix-blend-mode magic for the name across the seam */
+        .name-title {
+            position: absolute;
+            top: 5.5cqw;
+            left: 5cqw;
+            width: 90cqw;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13.5cqw;
+            line-height: 0.85;
+            color: #FFFFFF;
+            mix-blend-mode: difference;
+            z-index: 20;
+            text-align: left;
+            letter-spacing: 0.01em;
+            word-spacing: 2cqw;
+        }
+
+        /* Typography utility classes using cqw for perfect scaling */
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3cqw;
+            color: #0F0F0F;
+            border-bottom: 2px solid rgba(15, 15, 15, 0.15);
+            padding-bottom: 2cqw;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 1.4cqw;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #0F0F0F;
+            display: flex;
+            align-items: center;
+            gap: 1.5cqw;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 1.2cqw;
+            height: 1.2cqw;
+            background-color: #7FFF00; /* Acid green accent */
+        }
+
+        .body-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1.7cqw;
+            color: #1A1A1A;
+            line-height: 1.5;
+        }
+
+        /* Specific section styling */
+        .list-container {
+            border-left: 0.3cqw solid #7FFF00;
+            padding-left: 2cqw;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2cqw;
+        }
+
+        .list-item {
+            border-bottom: 1px solid rgba(15, 15, 15, 0.15);
+            padding-bottom: 0.8cqw;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.6cqw;
+            color: #1A1A1A;
+            line-height: 1.4;
+        }
+        
+        .list-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .chip {
+            background-color: #0F0F0F;
+            color: #F5F0E0;
+            padding: 0.5cqw 1.2cqw;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1cqw;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .badge-outline {
+            border: 0.15cqw solid #7FFF00;
+            border-radius: 999px;
+            padding: 0.4cqw 1.2cqw;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1cqw;
+            color: #0F0F0F;
+            font-weight: 700;
+            background-color: rgba(245, 240, 224, 0.5); /* Slight ivory backing for readability */
+        }
+
+        .cta-box {
+            background-color: #0F0F0F;
+            color: #7FFF00;
+            padding: 2.5cqw;
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5cqw;
+            letter-spacing: 0.05em;
+            margin-top: 4cqw;
+        }
+
+        /* Noise texture overlay for a more tactile print feel */
+        .noise-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            z-index: 15;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Initializing the main A4 canvas and background layout -->
+    <div class="a4-canvas">
+        
+        <!-- Blended background split -->
+        <div class="canvas-bg"></div>
+        
+        <!-- Texture overlay for print/sketchbook feel -->
+        <div class="noise-overlay"></div>
+
+        <!-- Rendering the left side hardware blueprint visual language -->
+        <!-- SVG Graphic for the Schematic Left Background -->
+        <svg class="absolute top-0 left-0 w-[42%] h-full pointer-events-none z-10" viewBox="0 0 400 1414" preserveAspectRatio="none">
+            <defs>
+                <!-- Gradients to fade out the grid and lines as they approach the seam -->
+                <linearGradient id="gridFade" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="60%" stop-color="#ffffff" stop-opacity="0.06" />
+                    <stop offset="90%" stop-color="#ffffff" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="lineFade" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="50%" stop-color="#ffffff" stop-opacity="0.15" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                </linearGradient>
+                
+                <!-- Blueprint Grid Pattern -->
+                <pattern id="blueprintGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="url(#gridFade)" stroke-width="1"/>
+                </pattern>
+            </defs>
+
+            <!-- Apply Grid -->
+            <rect width="100%" height="100%" fill="url(#blueprintGrid)" />
+
+            <!-- Random technical traces and vias -->
+            <g stroke="url(#lineFade)" fill="none" stroke-width="1.5">
+                <path d="M 40 450 L 120 450 L 150 480 L 280 480" />
+                <circle cx="40" cy="450" r="3" fill="#ffffff" opacity="0.15" />
+                <circle cx="280" cy="480" r="3" fill="#ffffff" opacity="0.1" />
+                
+                <path d="M 90 700 L 90 750 L 180 840 L 320 840" />
+                <circle cx="90" cy="700" r="3" fill="#ffffff" opacity="0.15" />
+                
+                <path d="M 30 950 L 160 950 L 190 980" />
+            </g>
+
+            <!-- Drawing the tiny incomplete circuit & lightbulb detail -->
+            <!-- Decorative detail: Faint tiny incomplete circuit ending in a lightbulb -->
+            <g opacity="0.7">
+                <path d="M 60 1200 L 60 1260 L 100 1300 L 140 1300" fill="none" stroke="#7FFF00" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <!-- Lightbulb Icon -->
+                <g transform="translate(145, 1288) scale(0.65)" fill="none" stroke="#7FFF00" stroke-width="2.5">
+                    <path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/>
+                    <path d="M10 14h4M10 17h4" stroke-width="2" stroke-linecap="round"/>
+                </g>
+            </g>
+
+            <!-- Grid coordinates / Lab text annotations -->
+            <text x="-900" y="25" transform="rotate(-90)" fill="#ffffff" opacity="0.15" font-family="'Space Mono', monospace" font-size="12" letter-spacing="4">SEC.01 // LAT.17.68 // YATIN.SYS</text>
+            <text x="-1200" y="80" transform="rotate(-90)" fill="#ffffff" opacity="0.08" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">HW_PROTO_V2.1</text>
+        </svg>
+
+        <!-- Positioning the main inverted typography (Name) -->
+        <!-- 
+          The title spans the width and uses mix-blend-mode: difference. 
+          Against the black background it appears bright.
+          Against the ivory background it appears dark.
+        -->
+        <h1 class="name-title">
+            CHITTINENI<br/>SAI YATIN
+        </h1>
+
+        <!-- Constructing the right-side editorial content layout -->
+        <!-- Main Content Area (Right 2/3rds - Editorial Layout) -->
+        <div class="relative z-20" style="margin-left: 39cqw; margin-right: 7cqw; padding-top: 33.5cqw;">
+            
+            <!-- Tagline -->
+            <div class="tagline italic text-right mb-[4cqw]">
+                Building at the intersection of Technology, Business and Hardware.
+            </div>
+
+            <!-- Education Badges -->
+            <div class="flex gap-[1cqw] mb-[4cqw] flex-wrap">
+                <span class="badge-outline">IIM Bangalore, BBA</span>
+                <span class="badge-outline">GITAM University, B.Tech CSE</span>
+            </div>
+
+            <!-- Section: THE PROBLEM -->
+            <div class="mb-[3.5cqw]">
+                <div class="section-label mb-[1cqw]">The Problem</div>
+                <div class="body-text font-semibold !text-[1.8cqw] !text-[#0F0F0F]">
+                    Most ventures need someone who can ship code, read markets, and run operations. That combination is rare. That is exactly what I do.
+                </div>
+            </div>
+
+            <!-- Formatting the 'What I Bring' and 'Key Edge' sections -->
+            <!-- Section: WHAT I BRING -->
+            <div class="mb-[4cqw]">
+                <div class="section-label mb-[1.5cqw]">What I Bring</div>
+                <div class="list-container">
+                    <div class="list-item">Founders Office at Flexzistay</div>
+                    <div class="list-item">Backend and Website Operations at ITGXP and Fortitude Fabrics</div>
+                    <div class="list-item">Product and Process Intern at The Farming Buddha</div>
+                    <div class="list-item">Makerspace Intern for 1.5 years at InCollege Prototyping Lab</div>
+                    <div class="list-item">VPL Lead at GITAM Entrepreneurs Club</div>
+                </div>
+            </div>
+
+            <!-- Section: KEY EDGE -->
+            <div class="mb-[4cqw]">
+                <div class="section-label mb-[1.5cqw]">Key Edge</div>
+                <div class="flex flex-wrap gap-[0.8cqw]">
+                    <span class="chip">Dual Degree</span>
+                    <span class="chip">IoT and Hardware</span>
+                    <span class="chip">Startup Operations</span>
+                    <span class="chip">Founders Office</span>
+                    <span class="chip">3D Design</span>
+                    <span class="chip">Electronics</span>
+                    <span class="chip">Makerspace Leadership</span>
+                    <span class="chip">Hackathon Organiser</span>
+                    <span class="chip">Market Research</span>
+                    <span class="chip">Product Development</span>
+                </div>
+            </div>
+
+            <!-- Finalizing layout with target audience and contact info -->
+            <!-- Section: WHO I BUILD WITH -->
+            <div class="mb-[5cqw]">
+                <div class="section-label mb-[1cqw]">Who I Build With</div>
+                <div class="body-text">
+                    Early stage startups and founders, Product and tech ventures, Innovation labs, AgriTech and deep tech teams.
+                </div>
+            </div>
+
+            <!-- Call to Action Block -->
+            <div class="cta-box shadow-lg">
+                LET'S BUILD SOMETHING.
+            </div>
+
+            <!-- Contact Information Footer -->
+            <div class="mt-[2cqw] text-[1.2cqw] text-[#0F0F0F] flex flex-wrap gap-[1cqw] justify-between font-['Space_Mono'] font-bold border-t-2 border-[rgba(15,15,15,0.1)] pt-[1.5cqw]">
+                <span class="hover:text-[#5fae00] transition-colors cursor-pointer">saiyatin9@gmail.com</span>
+                <span class="hover:text-[#5fae00] transition-colors cursor-pointer">linkedin.com/in/saiyatin</span>
+                <span>+91 98495 02655</span>
+                <span>Visakhapatnam, India</span>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
